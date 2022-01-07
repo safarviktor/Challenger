@@ -1,0 +1,64 @@
+<h3>
+  My Challenges
+</h3>
+
+
+    <div *ngFor='let c of myChallenges' style="margin-top: 30px;" >
+        <a [routerLink]="['/challenge', c.Id]" >
+            <div class="row" >        
+                <div class="col-md-12">                
+                    {{ c.Name }}
+                </div>                         
+            </div>     
+            <div class="row" >
+                <div class="col-md-4">                    
+                    <small>Today Goal: {{ c.TodayGoal }}</small>
+                </div>                      
+                <div class="col-md-4">
+                    <small>Today Count: {{ c.TodayCount }}</small>
+                </div>   
+                <div class="col-md-4">
+                    <small>Left to do today: {{ c.TodayTodo }}</small>
+                </div>
+            </div>     
+            <div class="row" >
+                <div class="col-md-4">
+                    <small>Current Total: {{ c.CurrentTotal }}</small>
+                </div>      
+                <div class="col-md-4">
+                    <small>Last Entry Count: {{ c.LastEntryCount }}</small>
+                </div>      
+                <div class="col-md-4">
+                    <small>Last Entry: {{ c.LastEntry | date : 'yyyy-MM-dd HH:mm' }}</small>
+                </div>  
+            </div>
+        </a>        
+    </div>
+
+
+
+<br />
+<h3>New challege</h3>
+
+<div class="row" >        
+    <div class="col-md-2">
+        Name:
+    </div>        
+    <div class="col-md-2">
+        <input [(ngModel)]='newChallengeName'/>        
+    </div>    
+    <div class="col-md-2">
+        Type:
+    </div>        
+    <div class="col-md-2">
+        <select [(ngModel)]='newChallengeType'>
+            <option *ngFor="let item of challengeTypes | keys" [value]="item.key">{{item.value}}</option>
+        </select> 
+    </div>  
+    <div class="col-md-4">
+        <button (click)='addChallenge()'>Save</button>
+    </div>  
+</div>     
+
+
+

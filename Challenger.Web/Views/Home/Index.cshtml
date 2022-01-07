@@ -1,0 +1,52 @@
+﻿@model Challenger.Web.Models.HomeViewModel
+
+@{
+    ViewBag.Title = "My challenges";
+}
+
+
+    
+
+
+        <h4>@ViewBag.Title</h4>
+
+        @foreach (var challenge in @Model.Challenges)
+        {
+            <a href="@Url.Action("Challenge", "Home", new {Id = @challenge.Id})">
+                
+                    <div class="row">
+                        <div class="col-12">
+                            <strong>@challenge.Name</strong>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <small>Today Goal: @challenge.TodayGoal</small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <small>Today Repetitions: @challenge.TodayCount</small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <small>Left to do today: @challenge.TodayTodo</small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <small>Current Total: @challenge.CurrentTotal</small>
+                        </div>
+                    </div>
+                
+            </a>
+            <hr />
+        }
+
+        <h5>Add a new challenge</h5>
+
+
+        @Html.Partial("_addChallenge", @Model.NewChallenge)
+
+    

@@ -1,0 +1,43 @@
+﻿@using Challenger.Common
+@model Challenger.Web.Models.AddSetViewModel
+
+
+@if (Model.Message.IsNotNullOrEmpty())
+{
+    <hr />
+    <span style="color: red;">@Model.Message</span>
+    <hr />
+}
+
+@using (@Html.BeginForm("AddSet", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+
+  
+        <div class="row">
+            <div class="col-6">
+                Repetitions:
+            </div>
+            <div class="col-6">
+                @Html.TextBoxFor(m => m.Count, new { style = "max-width: 120px" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                Date:
+            </div>
+            <div class="col-6">
+                @Html.TextBoxFor(m => m.Date, new { @Value = Model.Date.ToString("yyyy-MM-dd"), @class="datepicker", style = "max-width: 120px" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+
+        @Html.HiddenFor(m => m.ChallengeId)
+
+    
+}

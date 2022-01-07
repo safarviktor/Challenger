@@ -1,0 +1,152 @@
+<h3>
+{{ thisChallenge?.Name }}
+</h3>
+
+<div class="row" >
+    <div class="col-md-4">
+        Done By Today
+    </div>      
+    <div class="col-md-2">
+        {{ thisChallenge?.CurrentTotal }}
+    </div>      
+</div>
+
+<div class="row" >
+    <div class="col-md-4">
+        Done Today
+    </div>      
+    <div class="col-md-2">
+        {{ thisChallenge?.TodayCount }}
+    </div>      
+</div>
+
+<div class="row" >
+    <div class="col-md-4">
+        Today's Goal
+    </div>      
+    <div class="col-md-2">
+        {{ thisChallenge?.TodayGoal }}
+    </div>      
+</div>
+
+<div class="row" >
+    <div class="col-md-4">
+        Left To Do Today
+    </div>        
+    <div class="col-md-2">
+        {{ thisChallenge?.TodayTodo }}
+    </div>     
+</div>
+
+
+<div class="row" >
+    <div class="col-md-4">
+        Last Entry
+    </div>      
+    <div class="col-md-2">
+        {{ thisChallenge?.LastEntry | date : 'yyyy-MM-dd HH:mm' }}
+    </div>      
+</div>
+
+<div class="row" >
+    <div class="col-md-4">
+        Last Entry Count
+    </div>      
+    <div class="col-md-2">
+        {{ thisChallenge?.LastEntryCount }}
+    </div>      
+</div>
+
+<div class="row" >
+    <div class="col-md-4">
+        Should have done by today
+    </div>      
+    <div class="col-md-2">
+        {{ thisChallenge?.TargetTotal }}
+    </div>      
+</div>
+
+<div class="row" >
+    <div class="col-md-4">
+        Must do to catch up
+    </div>      
+    <div class="col-md-2">
+        {{ thisChallenge?.TargetTotalTodo }}
+    </div>      
+</div>
+
+
+
+<hr />
+
+<div class="row" >
+    <div class="col-md-2">
+        Repetitions:
+    </div>        
+    <div class="col-md-2">
+        <input [(ngModel)]='newSetCount'/>        
+    </div>    
+    <div class="col-md-2">
+        Date:
+    </div>        
+    <div class="col-md-2">
+        <input [ngModel]="newSetDate | date: 'yyyy-MM-dd'" (ngModelChange)="updateDateValue($event)"/>        
+    </div>  
+    <div class="col-md-2">
+        <button (click)='addNewSet()'>Save</button>
+    </div>  
+</div>
+
+<hr />
+    
+<h4>
+Sets:
+</h4>
+
+<div class="row" >
+    <!-- <div class="col-md-2">
+        Date Time Created
+    </div>         -->
+    <div class="col-md-2">
+        Date
+    </div>     
+    <div class="col-md-2">
+        Target
+    </div>     
+    <div class="col-md-2">
+        Total
+    </div>   
+    <div class="col-md-4">
+        Date logged
+    </div>   
+    <div class="col-md-2">
+        Count
+    </div>   
+</div>
+
+
+<div class="row" *ngFor='let sd of thisChallenge?.SetsByDay'>
+    <!-- <div class="col-md-2">
+        {{ s.DateTimeCreated | date : 'yyyy-MM-dd HH:mm' }}
+    </div>       -->
+    <div class="col-md-2">
+        {{ sd.Date | date : 'yyyy-MM-dd' }}
+    </div>      
+    <div class="col-md-2">
+        {{ sd.Target }}
+    </div>     
+    <div class="col-md-2">
+        {{ sd.Total }}
+    </div>    
+    
+    <div class="col-md-6">
+        <div class="row" *ngFor='let s of sd?.Sets'>
+            <div class="col-md-4">
+                {{ s.DateTimeCreated | date : 'yyyy-MM-dd HH:mm' }}
+            </div>
+            <div class="col-md-2">
+                {{ s.Count }}
+            </div>
+        </div>
+    </div>
+</div>

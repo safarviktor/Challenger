@@ -1,0 +1,4 @@
+interface JsonResult
+{
+    Data: any;
+}

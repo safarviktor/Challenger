@@ -1,0 +1,28 @@
+﻿@using Challenger.Common
+@model Challenger.Web.Models.AddChallengeViewModel
+
+@if (Model.Message.IsNotNullOrEmpty())
+{
+    <hr />
+    <span style="color: red;">@Model.Message</span>
+    <hr />
+}
+
+@using (@Html.BeginForm("AddChallenge", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", style = "width: 200px" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Type)
+        @Html.EnumDropDownListFor(m => m.Type, new { @class = "form-control", style = "width: 200px" })
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+}
