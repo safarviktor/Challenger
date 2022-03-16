@@ -11,6 +11,7 @@ namespace Challenger.Models
 
         // calculated fields
         public int CurrentTotal { get; set; }
+        public int SkippedTotal { get; set; }
         public DateTime? LastEntry { get; set; }
         public int LastEntryCount { get; set; }
         public int TodayCount { get; set; }

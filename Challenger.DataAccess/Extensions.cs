@@ -15,7 +15,7 @@ namespace Challenger.DataAccess
             {
                 c.TodayGoal = DateTime.Now.DayOfYear;
                 c.TodayTodo = DateTime.Now.DayOfYear - c.TodayCount;
-                c.TargetTotal = GetSumFromBeginningOfTheYear(DateTime.Today);
+                c.TargetTotal = GetSumFromBeginningOfTheYear(DateTime.Today) - c.SkippedTotal;
                 c.TargetTotalTodo = c.TargetTotal - c.CurrentTotal;
             }
         }

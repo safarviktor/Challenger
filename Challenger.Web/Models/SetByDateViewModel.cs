@@ -16,5 +16,8 @@ namespace Challenger.Web.Models
 
         public int RunningTotalTarget { get; set; }
         public int RunningTotal { get; set; }
+        public bool Skipped { get; set; }
+        public string SkippedReason { get; set; }
+        public string SkippedComment { get; set; }
     }
 }

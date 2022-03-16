@@ -60,14 +60,17 @@ namespace Challenger.Web.Controllers
                 SetsByDate = model.SetsByDay.Select(x => new SetByDateViewModel()
                 {
                     Date = x.Date,
+                    Skipped = x.SkipDetail?.Skipped == true,
+                    SkippedReason = x.SkipDetail?.Reason.ToString(),
+                    SkippedComment = x.SkipDetail?.Comment,
                     Sets = x.Sets.Select(s => new SetViewModel()
                     {
                         Id = s.Id,
                         Count = s.Repetitions,
-                        Date = s.Date
+                        Date = s.Date,
                     }).ToList()
                 }).ToList()
-            });
+            }) ;
         }
 
         [HttpPost]
@@ -93,7 +96,7 @@ namespace Challenger.Web.Controllers
         [HttpPost]
         public async Task<ActionResult> AddSkip(TrackSkipModel model)
         {
-            if (model.Date.Date > DateTime.Now.Date)
+            if (model.SkipDate.Date > DateTime.Now.Date)
             {
                 return RedirectToAction("Challenge", new { Id = model.ChallengeId, message = "Date cannot be greater than today." });
             }
