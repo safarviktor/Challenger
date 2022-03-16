@@ -70,6 +70,22 @@ namespace Challenger.DataAccess
             return challenges;
         }
 
+        public async Task AddSkip(TrackSkipModel model)
+        {
+            var query = $@"INSERT INTO clg.[Skip] 
+                        (ChallengeId, [Date], DateTimeCreated, SkipType, Comment) 
+                        SELECT 
+                            @{nameof(TrackSkipModel.ChallengeId)}, 
+                            @{nameof(TrackSkipModel.Date)}, 
+                            GETDATE(), 
+                            @{nameof(TrackSkipModel.Reason)},
+                            @{nameof(TrackSkipModel.Comment)}";
+
+            await WithConnection(async c =>
+            {
+                await c.ExecuteAsync(sql: query, param: model);
+            });
+        }
 
         public async Task<ChallengeSetModel> AddNewSet(TrackSetModel model)
         {

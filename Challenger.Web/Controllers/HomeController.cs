@@ -91,6 +91,25 @@ namespace Challenger.Web.Controllers
         }
 
         [HttpPost]
+        public async Task<ActionResult> AddSkip(TrackSkipModel model)
+        {
+            if (model.Date.Date > DateTime.Now.Date)
+            {
+                return RedirectToAction("Challenge", new { Id = model.ChallengeId, message = "Date cannot be greater than today." });
+            }
+
+            var challenge = await _challengerRepository.GetChallengeDetails(model.ChallengeId, User.Identity.GetUserId());
+            if (challenge == null)
+            {
+                return Naughty();
+            }
+
+            await _challengerRepository.AddSkip(model);
+
+            return RedirectToAction("Challenge", new { Id = model.ChallengeId });
+        }
+
+        [HttpPost]
         public async Task<ActionResult> AddSet(AddSetViewModel model)
         {
             if (model.Count < 1)

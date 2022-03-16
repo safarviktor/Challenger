@@ -16,5 +16,7 @@ namespace Challenger.Models
 
         public int RunningTotalTarget { get; set; }
         public int RunningTotal { get; set; }
+
+        public SkipDetail SkipDetail { get; set; }
     }
 }

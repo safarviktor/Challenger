@@ -1,0 +1,57 @@
+﻿@using Challenger.Models
+@model Challenger.Models.TrackSkipModel
+
+
+@using (@Html.BeginForm("AddSkip", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-6">
+            Skip?:
+        </div>
+        <div class="col-6">
+            @Html.EditorFor(m => m.Skip, new { style = "max-width: 120px" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            Rason:
+        </div>
+        <div class="col-6">
+            @Html.DropDownListFor(
+                m => m.Reason,
+                new SelectList(Enum.GetValues(typeof(SkipReason)).Cast<SkipReason>().Select(v => new SelectListItem
+                {
+                    Text = v.ToString(),
+                    Value = ((int)v).ToString()
+                }).ToList(), "Value", "Text"))
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            Comment:
+        </div>
+        <div class="col-6">
+            @Html.TextBoxFor(m => m.Comment, new { style = "max-width: 120px" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            Date:
+        </div>
+        <div class="col-6">
+            @Html.TextBoxFor(m => m.Date, new { @Value = Model.Date.ToString("yyyy-MM-dd"), @class = "datepicker", style = "max-width: 120px" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </div>
+
+    @Html.HiddenFor(m => m.ChallengeId)
+
+
+}
+
