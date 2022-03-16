@@ -44,9 +44,17 @@
             <hr />
         }
 
-        <h5>Add a new challenge</h5>
+        <h5 onclick="toggleAddChallgenge();" class="clickable">Add a new challenge</h5>
 
+        <div id="addChallengeContainer" class="hidden">
+            @Html.Partial("_addChallenge", @Model.NewChallenge)
+        </div>
+        
 
-        @Html.Partial("_addChallenge", @Model.NewChallenge)
+    <script type="text/javascript">
 
-    
+        function toggleAddChallgenge() {
+            $("#addChallengeContainer").toggleClass('hidden');
+        }
+
+    </script>

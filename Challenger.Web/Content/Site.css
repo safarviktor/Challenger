@@ -22,3 +22,13 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+.hidden {
+    display: none;
+}
+
+.clickable {
+    cursor: pointer;
+    text-decoration: underline;
+}
